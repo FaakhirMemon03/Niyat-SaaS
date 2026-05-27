@@ -8,6 +8,7 @@ import Signup from './pages/Signup';
 import AdminDashboard from './pages/AdminDashboard';
 import Pricing from './pages/Pricing';
 import Compatibility from './pages/Compatibility';
+import Settings from './pages/Settings';
 import SmoothScroll from './components/SmoothScroll';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
@@ -54,6 +55,7 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/compatibility" element={<Compatibility />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </SmoothScroll>
     </Router>

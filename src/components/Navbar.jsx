@@ -33,6 +33,10 @@ const Navbar = () => {
                                 <LayoutDashboard size={18} />
                                 <span>Dashboard</span>
                             </Link>
+                            <Link to="/settings" className="nav-btn glass-card">
+                                <Settings size={18} />
+                                <span>Settings</span>
+                            </Link>
                             <button onClick={logout} className="nav-btn glass-card" style={{ cursor: 'pointer', background: 'transparent', border: 'none', color: 'inherit', fontFamily: 'inherit' }}>
                                 <LogOut size={18} />
                                 <span>Logout</span>
