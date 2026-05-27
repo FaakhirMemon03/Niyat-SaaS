@@ -12,6 +12,7 @@ import Settings from './pages/Settings';
 import SmoothScroll from './components/SmoothScroll';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Fix for scroll position not resetting on route change
 function ScrollToTop() {
@@ -48,14 +49,26 @@ function App() {
       <SmoothScroll>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
           <Route path="/passport" element={<Passport />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin" element={
+            <ProtectedRoute adminOnly={true}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/compatibility" element={<Compatibility />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          } />
         </Routes>
       </SmoothScroll>
     </Router>

@@ -1,20 +1,26 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-const useAuthStore = create((set) => ({
-    user: null,
-    token: localStorage.getItem('niyat_token') || null,
-    role: null,
-    isAuthenticated: !!localStorage.getItem('niyat_token'),
+const useAuthStore = create(
+    persist(
+        (set) => ({
+            user: null,
+            token: null,
+            role: null,
+            isAuthenticated: false,
 
-    login: (userData, token, role) => {
-        localStorage.setItem('niyat_token', token);
-        set({ user: userData, token, role, isAuthenticated: true });
-    },
+            login: (userData, token, role) => {
+                set({ user: userData, token, role, isAuthenticated: true });
+            },
 
-    logout: () => {
-        localStorage.removeItem('niyat_token');
-        set({ user: null, token: null, role: null, isAuthenticated: false });
-    }
-}));
+            logout: () => {
+                set({ user: null, token: null, role: null, isAuthenticated: false });
+            }
+        }),
+        {
+            name: 'niyat-auth-storage', // name of the item in storage (must be unique)
+        }
+    )
+);
 
 export default useAuthStore;
