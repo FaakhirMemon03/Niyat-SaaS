@@ -12,6 +12,7 @@ import {
 import TrustTimeline from '../components/charts/TrustTimeline';
 import BehavioralDNA from '../components/charts/BehavioralDNA';
 import GhostingRadar from '../components/charts/GhostingRadar';
+import useAuthStore from '../store/authStore';
 
 function Dashboard() {
   const { user } = useAuthStore();
