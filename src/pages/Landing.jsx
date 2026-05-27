@@ -68,7 +68,6 @@ function Landing() {
           <a href="#features">Features</a>
           <a href="#passport">Passport</a>
           <a href="#compatibility">Compatibility</a>
-          <a href="#admin">Admin</a>
         </div>
         <Link to="/login" className="btn-primary no-underline">Launch Dashboard</Link>
       </nav>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import gsap from 'gsap';
-import { Mail, Lock, Globe, Github, Linkedin } from 'lucide-react';
+import { Mail, Lock, Globe, Terminal, Briefcase } from 'lucide-react';
 import axios from 'axios';
 import NeuralGlobe from '../components/NeuralGlobe';
 import useAuthStore from '../store/authStore';
@@ -131,8 +131,8 @@ function Login() {
 
             <div className="social-auth">
               <button className="social-btn glass-card"><Globe size={20} /></button>
-              <button className="social-btn glass-card"><Github size={20} /></button>
-              <button className="social-btn glass-card"><Linkedin size={20} /></button>
+              <button className="social-btn glass-card"><Terminal size={20} /></button>
+              <button className="social-btn glass-card"><Briefcase size={20} /></button>
             </div>
 
             <p className="auth-footer">
