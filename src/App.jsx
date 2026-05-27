@@ -52,6 +52,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/compatibility" element={<Compatibility />} />
         </Routes>
       </SmoothScroll>
     </Router>

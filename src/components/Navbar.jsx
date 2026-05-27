@@ -20,6 +20,8 @@ const Navbar = () => {
                     <div className="nav-links">
                         <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
                         <Link to="/" state={{ scrollTo: 'features' }}>Features</Link>
+                        <Link to="/compatibility" className={location.pathname === '/compatibility' ? 'active' : ''}>Compatibility</Link>
+                        <Link to="/pricing" className={location.pathname === '/pricing' ? 'active' : ''}>Pricing</Link>
                         <Link to="/passport" className={location.pathname === '/passport' ? 'active' : ''}>Passport</Link>
                     </div>
                 )}
