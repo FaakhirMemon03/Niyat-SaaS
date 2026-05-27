@@ -18,7 +18,26 @@ function Dashboard() {
 
   useEffect(() => {
     const tl = gsap.timeline();
-    // ... animation code ...
+
+    tl.fromTo('.dashboard-header',
+      { y: -50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+    )
+      .fromTo('.stat-card',
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)' },
+        "-=0.4"
+      )
+      .fromTo('.chart-section',
+        { x: -100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+        "-=0.4"
+      )
+      .fromTo('.risk-section',
+        { x: 100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+        "-=0.8"
+      );
   }, []);
 
   const stats = [
