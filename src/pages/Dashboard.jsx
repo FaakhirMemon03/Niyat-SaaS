@@ -4,12 +4,13 @@ import {
   Activity,
   ShieldCheck,
   AlertTriangle,
-  User,
   TrendingUp,
-  MessageSquare,
   Clock,
   Zap
 } from 'lucide-react';
+import TrustTimeline from '../components/charts/TrustTimeline';
+import BehavioralDNA from '../components/charts/BehavioralDNA';
+import GhostingRadar from '../components/charts/GhostingRadar';
 
 function Dashboard() {
   useEffect(() => {
@@ -77,57 +78,51 @@ function Dashboard() {
 
         {/* Main Dashboard Layout */}
         <div className="dashboard-main-grid">
-          <div className="chart-section glass-card">
-            <div className="section-header">
-              <h3>Behavioral Evolution</h3>
-              <select className="glass-select">
-                <option>Last 30 Days</option>
-                <option>Last 6 Months</option>
-              </select>
+          {/* Left Column: Timeline & Radar */}
+          <div className="dashboard-left-col">
+            <div className="chart-section glass-card" style={{ marginBottom: '24px' }}>
+              <div className="section-header">
+                <h3>Trust Evolution & Forecasting</h3>
+                <select className="glass-select">
+                  <option>Last 30 Days</option>
+                  <option>Monthly Forecast</option>
+                </select>
+              </div>
+              <TrustTimeline />
             </div>
-            <div className="mock-chart">
-              <svg viewBox="0 0 400 150" className="chart-svg">
-                <path d="M0,120 Q50,110 100,50 T200,80 T300,30 T400,60" fill="transparent" stroke="var(--cyan-neon)" strokeWidth="3" />
-                <path d="M0,150 L0,120 Q50,110 100,50 T200,80 T300,30 T400,60 L400,150 Z" fill="url(#grad)" opacity="0.2" />
-                <defs>
-                  <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: 'var(--cyan-neon)', stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: 'var(--cyan-neon)', stopOpacity: 0 }} />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div className="chart-legend">
-              <span>● Stability Index</span>
+
+            <div className="chart-section glass-card">
+              <h3>Predictive Ghosting Radar</h3>
+              <GhostingRadar />
             </div>
           </div>
 
-          <div className="risk-section glass-card">
-            <h3>Active Risk Monitoring</h3>
-            <div className="risk-list">
-              <div className="risk-item">
-                <div className="risk-icon warning"><AlertTriangle size={18} /></div>
-                <div className="risk-info">
-                  <h4>Communication Decay</h4>
-                  <p>Client XYZ response rhythm slowed by 34%.</p>
+          {/* Right Column: DNA & Risks */}
+          <div className="dashboard-right-col">
+            <div className="chart-section glass-card" style={{ marginBottom: '24px' }}>
+              <h3>Behavioral DNA</h3>
+              <BehavioralDNA />
+            </div>
+
+            <div className="risk-section glass-card">
+              <h3>Active Risk Monitoring</h3>
+              <div className="risk-list">
+                <div className="risk-item">
+                  <div className="risk-icon warning"><AlertTriangle size={18} /></div>
+                  <div className="risk-info">
+                    <h4>Communication Decay</h4>
+                    <p>Client XYZ rhythm slowed by 34%.</p>
+                  </div>
+                  <div className="risk-level">MEDIUM</div>
                 </div>
-                <div className="risk-level">MEDIUM</div>
-              </div>
-              <div className="risk-item">
-                <div className="risk-icon safe"><ShieldCheck size={18} /></div>
-                <div className="risk-info">
-                  <h4>Payment Reliability</h4>
-                  <p>Historical data indicates 98% on-time payment.</p>
+                <div className="risk-item">
+                  <div className="risk-icon safe"><ShieldCheck size={18} /></div>
+                  <div className="risk-info">
+                    <h4>Payment Reliability</h4>
+                    <p>98% on-time payment probability.</p>
+                  </div>
+                  <div className="risk-level trust-high">LOW</div>
                 </div>
-                <div className="risk-level trust-high">LOW</div>
-              </div>
-              <div className="risk-item">
-                <div className="risk-icon alert"><Activity size={18} /></div>
-                <div className="risk-info">
-                  <h4>Ghosting Threat</h4>
-                  <p>Disengagement detected in Project Beta.</p>
-                </div>
-                <div className="risk-level trust-low">HIGH</div>
               </div>
             </div>
           </div>
@@ -148,10 +143,9 @@ function Dashboard() {
         .stat-body h3 { font-size: 2rem; margin-bottom: 4px; }
         .stat-body p { color: var(--gray-text); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
 
-        .dashboard-main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+        .dashboard-main-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; }
         .chart-section { padding: 30px; }
-        .section-header { display: flex; justify-content: space-between; margin-bottom: 30px; }
-        .chart-svg { width: 100%; height: 250px; }
+        .section-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
         .glass-select { background: var(--bg-surface); color: white; border: 1px solid var(--glass-border); padding: 8px 16px; border-radius: 8px; }
 
         .risk-section { padding: 30px; }
@@ -165,7 +159,7 @@ function Dashboard() {
         .risk-info p { font-size: 0.8rem; color: var(--gray-text); }
         .risk-level { margin-left: auto; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .stats-grid { grid-template-columns: repeat(2, 1fr); }
           .dashboard-main-grid { grid-template-columns: 1fr; }
         }
