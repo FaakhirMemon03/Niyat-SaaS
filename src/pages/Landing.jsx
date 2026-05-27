@@ -70,7 +70,7 @@ function Landing() {
           <a href="#compatibility">Compatibility</a>
           <a href="#admin">Admin</a>
         </div>
-        <Link to="/dashboard" className="btn-primary no-underline">Launch Dashboard</Link>
+        <Link to="/login" className="btn-primary no-underline">Launch Dashboard</Link>
       </nav>
 
       {/* Hero Section */}
