@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import {
   Activity,
@@ -54,9 +55,14 @@ function Dashboard() {
             <h2>Welcome back, <span className="text-gradient">Freelancer #1024</span></h2>
             <p>Your reliability engine is monitoring 12 active connections.</p>
           </div>
-          <div className="ai-status">
-            <div className="ai-pulse"></div>
-            <span>AI Analyzing Behavior...</span>
+          <div className="dashboard-actions">
+            <Link to="/passport" className="btn-secondary glass-card" style={{ textDecoration: 'none', marginRight: '15px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <ShieldCheck size={16} /> View Passport
+            </Link>
+            <div className="ai-status">
+              <div className="ai-pulse"></div>
+              <span>AI Analyzing Behavior...</span>
+            </div>
           </div>
         </header>
 

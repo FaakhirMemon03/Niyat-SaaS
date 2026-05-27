@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Shield, LayoutDashboard, UserCircle, Settings, LogOut } from 'lucide-react';
+import useAuthStore from '../store/authStore';
 
 const Navbar = () => {
     const location = useLocation();
+    const { isAuthenticated, logout } = useAuthStore();
     const isAuthPage = ['/login', '/signup'].includes(location.pathname);
     const isAdmin = location.pathname.startsWith('/admin');
 
@@ -23,11 +25,26 @@ const Navbar = () => {
                 )}
 
                 <div className="nav-actions">
-                    <Link to="/dashboard" className="nav-btn glass-card">
-                        <LayoutDashboard size={18} />
-                        <span>Dashboard</span>
-                    </Link>
-                    <Link to="/login" className="btn-primary">Get Started</Link>
+                    {isAuthenticated ? (
+                        <>
+                            <Link to="/dashboard" className="nav-btn glass-card">
+                                <LayoutDashboard size={18} />
+                                <span>Dashboard</span>
+                            </Link>
+                            <button onClick={logout} className="nav-btn glass-card" style={{ cursor: 'pointer', background: 'transparent', border: 'none', color: 'inherit', fontFamily: 'inherit' }}>
+                                <LogOut size={18} />
+                                <span>Logout</span>
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login" className="nav-btn glass-card">
+                                <UserCircle size={18} />
+                                <span>Login</span>
+                            </Link>
+                            <Link to="/signup" className="btn-primary" style={{ textDecoration: 'none' }}>Get Started</Link>
+                        </>
+                    )}
                 </div>
             </div>
 

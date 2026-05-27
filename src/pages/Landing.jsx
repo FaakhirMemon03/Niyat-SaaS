@@ -61,8 +61,6 @@ function Landing() {
     <div className="app-container">
       <div className="bg-glow"></div>
 
-      <div className="bg-glow"></div>
-
       {/* Hero Section */}
       <section className="hero-section" ref={heroRef}>
         <div className="hero-content">

@@ -1,108 +1,115 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
-    Globe,
-    ShieldAlert,
-    Users,
-    Eye,
-    Zap,
-    ArrowUpRight,
-    Search,
-    Settings
+  Globe,
+  ShieldAlert,
+  Users,
+  Eye,
+  Zap,
+  ArrowUpRight,
+  ArrowLeft,
+  Search,
+  Settings
 } from 'lucide-react';
 
 function AdminDashboard() {
-    const metrics = [
-        { label: 'Ecosystem Trust', value: '84.2%', icon: <Globe />, trend: '+1.2%' },
-        { label: 'Fraud Attempts', value: '12', icon: <ShieldAlert />, trend: '-24%' },
-        { label: 'Global Entities', value: '12.4k', icon: <Users />, trend: '+412' },
-        { label: 'AI Throughput', value: '98.9%', icon: <Zap />, trend: 'Stable' },
-    ];
+  const metrics = [
+    { label: 'Ecosystem Trust', value: '84.2%', icon: <Globe />, trend: '+1.2%' },
+    { label: 'Fraud Attempts', value: '12', icon: <ShieldAlert />, trend: '-24%' },
+    { label: 'Global Entities', value: '12.4k', icon: <Users />, trend: '+412' },
+    { label: 'AI Throughput', value: '98.9%', icon: <Zap />, trend: 'Stable' },
+  ];
 
-    return (
-        <div className="admin-container">
-            <div className="bg-glow"></div>
+  return (
+    <div className="admin-container">
+      <div className="bg-glow"></div>
 
-            {/* Admin Sidebar */}
-            <aside className="admin-sidebar glass-card">
-                <div className="logo text-gradient">NIYAT ADMIN</div>
-                <nav className="admin-nav">
-                    <a href="#" className="active"><Eye size={18} /> Observatory</a>
-                    <a href="#"><ShieldAlert size={18} /> Fraud Center</a>
-                    <a href="#"><Users size={18} /> User Graph</a>
-                    <a href="#"><Zap size={18} /> Model Health</a>
-                    <a href="#"><Settings size={18} /> Config</a>
-                </nav>
-            </aside>
+      {/* Admin Sidebar */}
+      <aside className="admin-sidebar glass-card">
+        <div className="logo text-gradient">NIYAT ADMIN</div>
+        <nav className="admin-nav">
+          <Link to="/admin" className="active"><Eye size={18} /> Observatory</Link>
+          <a href="#"><ShieldAlert size={18} /> Fraud Center</a>
+          <a href="#"><Users size={18} /> User Graph</a>
+          <a href="#"><Zap size={18} /> Model Health</a>
+          <a href="#"><Settings size={18} /> Config</a>
+        </nav>
+        <div className="sidebar-footer" style={{ marginTop: 'auto' }}>
+          <Link to="/" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--gray-text)', textDecoration: 'none', fontSize: '0.9rem' }}>
+            <ArrowLeft size={16} /> Exit Admin Mode
+          </Link>
+        </div>
+      </aside>
 
-            <main className="admin-main">
-                <header className="admin-header">
-                    <div className="header-left">
-                        <h1>Behavioral <span className="text-gradient">Observatory</span></h1>
-                        <p>Global Reliability Infrastructure Monitoring</p>
-                    </div>
-                    <div className="admin-search glass-card">
-                        <Search size={18} />
-                        <input type="text" placeholder="Search identities..." />
-                    </div>
-                </header>
+      <main className="admin-main">
+        <header className="admin-header">
+          <div className="header-left">
+            <h1>Behavioral <span className="text-gradient">Observatory</span></h1>
+            <p>Global Reliability Infrastructure Monitoring</p>
+          </div>
+          <div className="admin-search glass-card">
+            <Search size={18} />
+            <input type="text" placeholder="Search identities..." />
+          </div>
+        </header>
 
-                <div className="metrics-grid">
-                    {metrics.map((m, i) => (
-                        <div key={i} className="admin-stat-card glass-card">
-                            <div className="stat-icon">{m.icon}</div>
-                            <div className="stat-data">
-                                <h4>{m.label}</h4>
-                                <h3>{m.value}</h3>
-                                <span className="stat-trend">{m.trend}</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+        <div className="metrics-grid">
+          {metrics.map((m, i) => (
+            <div key={i} className="admin-stat-card glass-card">
+              <div className="stat-icon">{m.icon}</div>
+              <div className="stat-data">
+                <h4>{m.label}</h4>
+                <h3>{m.value}</h3>
+                <span className="stat-trend">{m.trend}</span>
+              </div>
+            </div>
+          ))}
+        </div>
 
-                {/* Advanced Monitoring View */}
-                <div className="observatory-grid">
-                    <div className="live-anomalies glass-card">
-                        <div className="card-header">
-                            <h3>Real-time Anomalies</h3>
-                            <div className="live-indicator"><div className="ai-pulse"></div> LIVE</div>
-                        </div>
-                        <div className="anomaly-list">
-                            <div className="anomaly-row">
-                                <span className="a-time">14:22:01</span>
-                                <span className="a-type warning">RHYTHM DRIFT</span>
-                                <span className="a-entity">User_921</span>
-                                <ArrowUpRight size={14} />
-                            </div>
-                            <div className="anomaly-row">
-                                <span className="a-time">14:19:43</span>
-                                <span className="a-type alert">CLUSTER MATCH</span>
-                                <span className="a-entity">Group_SCAM_2</span>
-                                <ArrowUpRight size={14} />
-                            </div>
-                            <div className="anomaly-row">
-                                <span className="a-time">14:15:12</span>
-                                <span className="a-type notice">TRUST SPIKE</span>
-                                <span className="a-entity">Agency_X</span>
-                                <ArrowUpRight size={14} />
-                            </div>
-                        </div>
-                    </div>
+        {/* Advanced Monitoring View */}
+        <div className="observatory-grid">
+          <div className="live-anomalies glass-card">
+            <div className="card-header">
+              <h3>Real-time Anomalies</h3>
+              <div className="live-indicator"><div className="ai-pulse"></div> LIVE</div>
+            </div>
+            <div className="anomaly-list">
+              <div className="anomaly-row">
+                <span className="a-time">14:22:01</span>
+                <span className="a-type warning">RHYTHM DRIFT</span>
+                <span className="a-entity">User_921</span>
+                <ArrowUpRight size={14} />
+              </div>
+              <div className="anomaly-row">
+                <span className="a-time">14:19:43</span>
+                <span className="a-type alert">CLUSTER MATCH</span>
+                <span className="a-entity">Group_SCAM_2</span>
+                <ArrowUpRight size={14} />
+              </div>
+              <div className="anomaly-row">
+                <span className="a-time">14:15:12</span>
+                <span className="a-type notice">TRUST SPIKE</span>
+                <span className="a-entity">Agency_X</span>
+                <ArrowUpRight size={14} />
+              </div>
+            </div>
+          </div>
 
-                    <div className="graph-overview glass-card">
-                        <h3>Global Relationship Graph</h3>
-                        <div className="mock-graph-visual">
-                            {/* Neural network visual placeholder */}
-                            <div className="g-line"></div>
-                            <div className="g-node"></div>
-                            <div className="g-node p1"></div>
-                            <div className="g-node p2"></div>
-                            <p>Initializing Relationship Spatial Map...</p>
-                        </div>
-                    </div>
-                </div>
-            </main>
+          <div className="graph-overview glass-card">
+            <h3>Global Relationship Graph</h3>
+            <div className="mock-graph-visual">
+              {/* Neural network visual placeholder */}
+              <div className="g-line"></div>
+              <div className="g-node"></div>
+              <div className="g-node p1"></div>
+              <div className="g-node p2"></div>
+              <p>Initializing Relationship Spatial Map...</p>
+            </div>
+          </div>
+        </div>
+      </main>
 
-            <style jsx>{`
+      <style jsx>{`
         .admin-container {
           display: grid;
           grid-template-columns: 280px 1fr;
@@ -244,8 +251,8 @@ function AdminDashboard() {
            .observatory-grid { grid-template-columns: 1fr; }
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }
 
 export default AdminDashboard;
