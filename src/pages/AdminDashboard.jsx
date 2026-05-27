@@ -250,6 +250,14 @@ function AdminDashboard() {
            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
            .observatory-grid { grid-template-columns: 1fr; }
         }
+
+        @media (max-width: 768px) {
+           .admin-container { grid-template-columns: 1fr; }
+           .admin-sidebar { margin: 10px; padding: 20px; }
+           .metrics-grid { grid-template-columns: 1fr; }
+           .admin-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+           .admin-search { width: 100%; }
+        }
       `}</style>
     </div>
   );

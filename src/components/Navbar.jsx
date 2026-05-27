@@ -9,7 +9,7 @@ const Navbar = () => {
     const isAuthPage = ['/login', '/signup'].includes(location.pathname);
     const isAdmin = location.pathname.startsWith('/admin');
 
-    if (isAuthPage) return null;
+    if (isAuthPage || isAdmin) return null;
 
     return (
         <nav className="main-nav">

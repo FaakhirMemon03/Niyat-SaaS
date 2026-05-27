@@ -18,7 +18,7 @@ export default function Loader({ onFinish }) {
     return (
         <div className="loader-container" ref={containerRef} style={{
             position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-            background: 'black', zIndex: 1000, display: 'flex', flexDirection: 'column',
+            background: 'black', zIndex: 2000, display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center'
         }}>
             <div className="logo text-gradient loader-logo" style={{ fontSize: '3rem', marginBottom: '40px' }}>NIYAT</div>
