@@ -61,16 +61,7 @@ function Landing() {
     <div className="app-container">
       <div className="bg-glow"></div>
 
-      {/* Navigation */}
-      <nav>
-        <div className="logo text-gradient">NIYAT</div>
-        <div className="nav-links">
-          <a href="#features">Features</a>
-          <a href="#passport">Passport</a>
-          <a href="#compatibility">Compatibility</a>
-        </div>
-        <Link to="/login" className="btn-primary no-underline">Launch Dashboard</Link>
-      </nav>
+      <div className="bg-glow"></div>
 
       {/* Hero Section */}
       <section className="hero-section" ref={heroRef}>
