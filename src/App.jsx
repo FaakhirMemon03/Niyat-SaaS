@@ -12,20 +12,35 @@ import Navbar from './components/Navbar';
 
 // Fix for scroll position not resetting on route change
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
   useEffect(() => {
+    if (state?.scrollTo) {
+      const element = document.getElementById(state.scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, state]);
   return null;
 }
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    // Check if loader has already been shown in this session
+    return !sessionStorage.getItem('loader_shown');
+  });
+
+  const handleLoaderFinish = () => {
+    setLoading(false);
+    sessionStorage.setItem('loader_shown', 'true');
+  };
 
   return (
     <Router>
       <ScrollToTop />
-      {loading && <Loader onFinish={() => setLoading(false)} />}
+      {loading && <Loader onFinish={handleLoaderFinish} />}
       <Navbar />
       <SmoothScroll>
         <Routes>

@@ -19,7 +19,7 @@ const Navbar = () => {
                 {!isAdmin && (
                     <div className="nav-links">
                         <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-                        <a href="/#features">Features</a>
+                        <Link to="/" state={{ scrollTo: 'features' }}>Features</Link>
                         <Link to="/passport" className={location.pathname === '/passport' ? 'active' : ''}>Passport</Link>
                     </div>
                 )}
