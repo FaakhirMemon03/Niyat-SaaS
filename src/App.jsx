@@ -6,6 +6,8 @@ import Passport from './pages/Passport';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AdminDashboard from './pages/AdminDashboard';
+import Pricing from './pages/Pricing';
+import Compatibility from './pages/Compatibility';
 import SmoothScroll from './components/SmoothScroll';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
