@@ -4,8 +4,31 @@ import { User, Mail, Lock, Briefcase, ChevronRight } from 'lucide-react';
 import NeuralGlobe from '../components/NeuralGlobe';
 
 function Signup() {
-    const [step, setStep] = useState(1);
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [accountType, setAccountType] = useState('Freelancer');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        try {
+            const res = await axios.post('http://localhost:5000/api/auth/signup', {
+                fullName,
+                email,
+                password,
+                accountType
+            });
+            alert(res.data.message);
+            navigate('/login');
+        } catch (err) {
+            alert(err.response?.data?.message || 'Error creating identity');
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <div className="signup-container">
@@ -31,12 +54,18 @@ function Signup() {
                             <p className="auth-subtitle">Initialize Your Behavioral Identity</p>
                         </header>
 
-                        <form className="auth-form">
+                        <form className="auth-form" onSubmit={handleSignup}>
                             <div className="input-group">
                                 <label>Full Name</label>
                                 <div className="input-wrapper">
                                     <User size={18} className="input-icon" />
-                                    <input type="text" placeholder="John Doe" required />
+                                    <input
+                                        type="text"
+                                        placeholder="John Doe"
+                                        required
+                                        value={fullName}
+                                        onChange={(e) => setFullName(e.target.value)}
+                                    />
                                 </div>
                             </div>
 
@@ -44,7 +73,13 @@ function Signup() {
                                 <label>Email Address</label>
                                 <div className="input-wrapper">
                                     <Mail size={18} className="input-icon" />
-                                    <input type="email" placeholder="john@niyat.com" required />
+                                    <input
+                                        type="email"
+                                        placeholder="john@niyat.com"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
                                 </div>
                             </div>
 
@@ -52,7 +87,11 @@ function Signup() {
                                 <label>Account Type</label>
                                 <div className="input-wrapper">
                                     <Briefcase size={18} className="input-icon" />
-                                    <select className="auth-select">
+                                    <select
+                                        className="auth-select"
+                                        value={accountType}
+                                        onChange={(e) => setAccountType(e.target.value)}
+                                    >
                                         <option>Freelancer</option>
                                         <option>Client</option>
                                         <option>Agency</option>
@@ -66,12 +105,19 @@ function Signup() {
                                 <label>Password</label>
                                 <div className="input-wrapper">
                                     <Lock size={18} className="input-icon" />
-                                    <input type="password" placeholder="••••••••" required />
+                                    <input
+                                        type="password"
+                                        placeholder="••••••••"
+                                        required
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
                                 </div>
                             </div>
 
-                            <button type="button" className="btn-primary auth-submit" onClick={() => navigate('/dashboard')}>
-                                CREATE IDENTITY <ChevronRight size={18} style={{ marginLeft: '8px' }} />
+                            <button type="submit" className="btn-primary auth-submit" disabled={isLoading}>
+                                {isLoading ? "INITIALIZING..." : "CREATE IDENTITY"}
+                                {!isLoading && <ChevronRight size={18} style={{ marginLeft: '8px' }} />}
                             </button>
                         </form>
 
