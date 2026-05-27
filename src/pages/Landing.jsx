@@ -1,8 +1,9 @@
 import React from 'react';
-import heroGraph from './assets/hero-graph.png';
-import passportImg from './assets/passport.png';
+import { Link } from 'react-router-dom';
+import heroGraph from '../assets/hero-graph.png';
+import passportImg from '../assets/passport.png';
 
-function App() {
+function Landing() {
   return (
     <div className="app-container">
       <div className="bg-glow"></div>
@@ -16,7 +17,7 @@ function App() {
           <a href="#compatibility">Compatibility</a>
           <a href="#admin">Admin</a>
         </div>
-        <button className="btn-primary">Launch Dashboard</button>
+        <Link to="/dashboard" className="btn-primary no-underline">Launch Dashboard</Link>
       </nav>
 
       {/* Hero Section */}
@@ -35,7 +36,7 @@ function App() {
             delivery consistency, and partnership success before you even start.
           </p>
           <div className="hero-actions">
-            <button className="btn-primary">Get Your Trust Score</button>
+            <Link to="/dashboard" className="btn-primary no-underline">Get Your Trust Score</Link>
             <button className="btn-secondary glass-card">View Trust Graph</button>
           </div>
         </div>
@@ -109,7 +110,7 @@ function App() {
               <li>Emotional Stability Metrics</li>
               <li>Long-term Retention Probability</li>
             </ul>
-            <button className="btn-primary">Generate My Passport</button>
+            <Link to="/dashboard" className="btn-primary no-underline">Generate My Passport</Link>
           </div>
         </div>
       </section>
@@ -134,6 +135,11 @@ function App() {
         .app-container {
           width: 100%;
           overflow-x: hidden;
+        }
+
+        .no-underline {
+          text-decoration: none;
+          display: inline-block;
         }
 
         .hero-section {
@@ -342,35 +348,9 @@ function App() {
           color: var(--gray-text);
           text-decoration: none;
         }
-
-        @media (max-width: 1024px) {
-          .hero-section {
-            grid-template-columns: 1fr;
-            text-align: center;
-            padding-top: 60px;
-          }
-          
-          .hero-description {
-            margin: 32px auto;
-          }
-
-          .hero-actions {
-            justify-content: center;
-          }
-
-          .passport-grid {
-            grid-template-columns: 1fr;
-            text-align: center;
-          }
-
-          .passport-features {
-            display: inline-block;
-            text-align: left;
-          }
-        }
       `}</style>
     </div>
   );
 }
 
-export default App;
+export default Landing;
