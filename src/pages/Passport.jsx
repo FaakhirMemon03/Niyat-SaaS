@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import passportImg from '../assets/passport.png';
 import { Shield, Target, Zap, Heart, MessageCircle, AlertCircle, ArrowLeft } from 'lucide-react';
+import useAuthStore from '../store/authStore';
 
 function Passport() {
+  const { user } = useAuthStore();
+
   const metrics = [
-    { label: 'Reliability Score', value: 92, color: 'var(--emerald-trust)', icon: <Shield /> },
-    { label: 'Consistency Index', value: 88, color: 'var(--cyan-neon)', icon: <Target /> },
-    { label: 'Stress Resilience', value: 76, color: 'var(--purple-glow)', icon: <Zap /> },
-    { label: 'Emotional Stability', value: 91, color: 'var(--emerald-trust)', icon: <Heart /> },
+    { label: 'Reliability Score', value: user?.trustScore || 92, color: 'var(--emerald-trust)', icon: <Shield /> },
+    { label: 'Consistency Index', value: user?.behavioralProfile?.consistency || 88, color: 'var(--cyan-neon)', icon: <Target /> },
+    { label: 'Stress Resilience', value: user?.behavioralProfile?.resilience || 76, color: 'var(--purple-glow)', icon: <Zap /> },
+    { label: 'Emotional Stability', value: user?.behavioralProfile?.stability || 91, color: 'var(--emerald-trust)', icon: <Heart /> },
   ];
 
   return (
@@ -31,8 +34,8 @@ function Passport() {
               </div>
             </div>
             <div className="id-details">
-              <h3>F. Memon</h3>
-              <p className="id-id">ID: 0x921A...421</p>
+              <h3>{user?.fullName || 'User'}</h3>
+              <p className="id-id">ID: 0x{user?._id?.slice(-8).toUpperCase() || 'NIYAT-001'}</p>
               <div className="id-tags">
                 <span className="tag">High Reliability</span>
                 <span className="tag">Fast Responder</span>
