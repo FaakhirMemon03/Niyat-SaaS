@@ -14,32 +14,15 @@ import BehavioralDNA from '../components/charts/BehavioralDNA';
 import GhostingRadar from '../components/charts/GhostingRadar';
 
 function Dashboard() {
+  const { user } = useAuthStore();
+
   useEffect(() => {
     const tl = gsap.timeline();
-
-    tl.fromTo('.dashboard-header',
-      { y: -50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
-    )
-      .fromTo('.stat-card',
-        { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)' },
-        "-=0.4"
-      )
-      .fromTo('.chart-section',
-        { x: -100, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-        "-=0.4"
-      )
-      .fromTo('.risk-section',
-        { x: 100, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-        "-=0.8"
-      );
+    // ... animation code ...
   }, []);
 
   const stats = [
-    { label: 'Trust Score', value: '88', icon: <ShieldCheck className="trust-high" />, trend: '+4' },
+    { label: 'Trust Score', value: user?.trustScore || '88', icon: <ShieldCheck className="trust-high" />, trend: '+4' },
     { label: 'Ghosting Risk', value: '11%', icon: <AlertTriangle className="trust-low" />, trend: '-2' },
     { label: 'Response Time', value: '45m', icon: <Clock className="text-gradient" />, trend: '-5m' },
     { label: 'Consistency', value: 'High', icon: <TrendingUp className="trust-high" />, trend: 'Stable' },
@@ -52,7 +35,7 @@ function Dashboard() {
       <div className="dashboard-content">
         <header className="dashboard-header glass-card">
           <div className="user-welcome">
-            <h2>Welcome back, <span className="text-gradient">Freelancer #1024</span></h2>
+            <h2>Welcome back, <span className="text-gradient">{user?.fullName || 'User'}</span></h2>
             <p>Your reliability engine is monitoring 12 active connections.</p>
           </div>
           <div className="dashboard-actions">
