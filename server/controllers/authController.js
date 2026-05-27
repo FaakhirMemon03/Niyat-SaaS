@@ -12,11 +12,17 @@ const signup = async (req, res) => {
         if (existingUser) return res.status(400).json({ message: 'Email already exists' });
 
         const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Map accountType to role for internal logic
+        const role = accountType.toLowerCase() === 'enterprise' ? 'enterprise' :
+            accountType.toLowerCase() === 'client' ? 'client' : 'freelancer';
+
         const newUser = new User({
             fullName,
             email,
             password: hashedPassword,
-            accountType: accountType || 'Freelancer'
+            accountType,
+            role
         });
 
         await newUser.save();
